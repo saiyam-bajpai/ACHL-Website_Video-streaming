@@ -16,6 +16,7 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 dotenv.config();
 
 const app = express();
+app.set('trust proxy', 1); // Trust reverse proxy headers (Render, Cloudflare, etc.)
 const PORT = process.env.PORT || 5000;
 const prisma = new PrismaClient();
 
