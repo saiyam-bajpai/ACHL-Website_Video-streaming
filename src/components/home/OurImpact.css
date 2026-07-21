@@ -1,0 +1,57 @@
+.impact {
+  background: var(--cream);
+}
+
+.impact__head {
+  text-align: center;
+}
+
+.impact__title {
+  margin-top: 20px;
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+}
+
+.impact__grid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.impact__card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 40px 24px;
+  text-align: center;
+  border: 1px solid var(--border-soft);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.impact__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px -24px #00000026;
+}
+
+.impact__card h3 {
+  font-size: clamp(2.2rem, 3.6vw, 2.8rem);
+  color: var(--red);
+}
+
+.impact__card p {
+  margin-top: 10px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #57544f;
+}
+
+@media (max-width: 860px) {
+  .impact__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .impact__grid {
+    grid-template-columns: 1fr;
+  }
+}

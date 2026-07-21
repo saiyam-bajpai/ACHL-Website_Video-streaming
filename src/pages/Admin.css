@@ -1,0 +1,243 @@
+/* Admin Panel Styles */
+.admin-page {
+  padding: calc(var(--nav-h) + 40px) 0 80px;
+  background: var(--ivory);
+  min-height: 100vh;
+}
+
+.admin-section {
+  background: var(--white);
+  border: 1.5px solid var(--border-soft);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+}
+
+.admin-section-title {
+  font-size: 22px;
+  margin-bottom: 6px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--black);
+}
+
+.admin-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.admin-table th {
+  background: var(--cream);
+  padding: 14px 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--grey);
+  border-bottom: 1.5px solid var(--border-soft);
+}
+
+.admin-table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: middle;
+  color: var(--charcoal);
+}
+
+.admin-table tr:hover td {
+  background: rgba(245, 242, 238, 0.3);
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Specific Role Badges (Preventing name collision by using role prefix) */
+.role-badge {
+  display: inline-flex;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.role-badge.role-admin {
+  background: rgba(197, 0, 24, 0.08) !important;
+  color: var(--red) !important;
+  border: 1px solid rgba(197, 0, 24, 0.2);
+  min-height: auto !important;
+  padding: 4px 10px !important;
+}
+
+.role-badge.role-student {
+  background: rgba(99, 102, 241, 0.08) !important;
+  color: #4f46e5 !important;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  min-height: auto !important;
+  padding: 4px 10px !important;
+}
+
+.role-badge.role-founder {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: var(--black) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  min-height: auto !important;
+  padding: 4px 10px !important;
+}
+
+.admin-select {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  font-family: inherit;
+  font-size: 13.5px;
+  background: var(--white);
+  color: var(--black);
+  cursor: pointer;
+}
+
+.admin-select:focus {
+  outline: none;
+  border-color: var(--red);
+}
+
+/* Forms Card */
+.admin-form-card {
+  height: fit-content;
+  position: sticky;
+  top: calc(var(--nav-h) + 20px);
+}
+
+.admin-form-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.admin-form-label input,
+.admin-form-label select {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  font-family: inherit;
+  font-size: 14px;
+  background: var(--white);
+  color: var(--black);
+  transition: border-color 0.25s ease;
+}
+
+.admin-form-label input:focus,
+.admin-form-label select:focus {
+  outline: none;
+  border-color: var(--red);
+}
+
+/* Administrative adjustment inline forms */
+.admin-action-btn {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-action-btn.reset {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--black);
+  border: 1px solid var(--border-soft);
+}
+
+.admin-action-btn.reset:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.admin-action-btn.delete {
+  background: rgba(197, 0, 24, 0.05);
+  color: var(--red);
+  border: 1px solid rgba(197, 0, 24, 0.15);
+}
+
+.admin-action-btn.delete:hover {
+  background: var(--red);
+  color: var(--white);
+}
+
+/* Inline stats input editor box */
+.stats-edit-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stats-edit-input {
+  width: 70px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-soft);
+  font-size: 13px;
+}
+
+.stats-edit-select {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-soft);
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .courses-grid-management {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-table-container {
+    overflow-x: auto;
+  }
+  .admin-table th, .admin-table td {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}
+
+/* Responsive grid layout */
+.admin-grid-layout {
+  display: grid;
+  grid-template-columns: 260px 1px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.desktop-divider {
+  width: 1px;
+  background: var(--border-soft);
+  min-height: 600px;
+}
+
+@media (max-width: 992px) {
+  .admin-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .desktop-divider {
+    display: none;
+  }
+}

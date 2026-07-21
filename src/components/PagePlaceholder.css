@@ -1,0 +1,36 @@
+.placeholder {
+  min-height: 100vh;
+  background: var(--cream);
+  padding: calc(var(--nav-h) + 100px) 0 120px;
+}
+
+.placeholder__inner {
+  max-width: 720px;
+}
+
+.placeholder__title {
+  margin-top: 20px;
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+}
+
+.placeholder__desc {
+  margin-top: 20px;
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: #56534e;
+  max-width: 560px;
+}
+
+.placeholder__body {
+  margin-top: 40px;
+}
+
+.placeholder__back {
+  margin-top: 44px;
+}
+
+@media (max-width: 600px) {
+  .placeholder {
+    padding: calc(var(--nav-h) + 56px) 0 80px;
+  }
+}

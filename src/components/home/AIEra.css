@@ -1,0 +1,71 @@
+.aiera {
+  background: var(--cream);
+}
+
+.aiera__head {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.aiera__title {
+  margin-top: 20px;
+  font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+}
+
+.aiera__grid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.aiera__card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 40px 32px;
+  text-align: center;
+  border: 1px solid var(--border-soft);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.aiera__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px -24px #00000026;
+}
+
+.aiera__icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  background: var(--cream);
+  color: var(--red);
+  transition: background 0.35s ease, color 0.35s ease, transform 0.35s var(--ease);
+}
+
+.aiera__card:hover .aiera__icon {
+  background: var(--red);
+  color: var(--white);
+  transform: rotate(-6deg) scale(1.05);
+}
+
+.aiera__card h3 {
+  font-size: 19px;
+  margin-bottom: 12px;
+}
+
+.aiera__card p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #66635e;
+}
+
+@media (max-width: 860px) {
+  .aiera__grid {
+    grid-template-columns: 1fr;
+  }
+}

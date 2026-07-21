@@ -1,0 +1,146 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           Int             @id @default(autoincrement())
+  email        String          @unique
+  password     String
+  name         String
+  role         String          @default("Student")
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  enrollments  Enrollment[]
+  tasks        Task[]
+  studentStats StudentStats?
+  testResults  TestResult[]
+  tickets           SupportTicket[]
+  studyNotes        StudyNote[]
+  lessonCompletions LessonCompletion[]
+
+  @@index([email])
+}
+
+model Course {
+  id              Int          @id @default(autoincrement())
+  slug            String       @unique
+  title           String
+  category        String
+  duration        String
+  format          String
+  price           String
+  desc            String
+  thumbnailText   String
+  level           String       @default("Intermediate")
+  instructor      String       @default("Staff Operator")
+  instructorTitle String       @default("ACHL Lead Instructor")
+  outcomes        Json         @default("[]")
+  curriculum      Json         @default("[]")
+  faqs            Json         @default("[]")
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  enrollments     Enrollment[]
+
+  @@index([slug])
+}
+
+model Enrollment {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  courseSlug String
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course     Course   @relation(fields: [courseSlug], references: [slug], onDelete: Cascade)
+
+  @@unique([userId, courseSlug])
+  @@index([userId])
+  @@index([courseSlug])
+}
+
+model Task {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  text      String
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model StudentStats {
+  id         Int    @id @default(autoincrement())
+  userId     Int    @unique
+  attendance Float  @default(100.0)
+  feesPaid   String @default("$0")
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Test {
+  id          Int          @id @default(autoincrement())
+  title       String
+  slug        String       @unique
+  duration    Int          @default(30)
+  questions   Json
+  isActive    Boolean      @default(true)
+  testResults TestResult[]
+}
+
+model TestResult {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  testId       Int
+  score        Int
+  topperScore  Int      @default(90)
+  rank         Int      @default(1)
+  mistakes     Json
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  test         Test     @relation(fields: [testId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([testId])
+}
+
+model SupportTicket {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model StudyNote {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  courseSlug String
+  moduleIdx  Int
+  lessonIdx  Int
+  content    String   @db.Text
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseSlug, moduleIdx, lessonIdx])
+  @@index([userId])
+}
+
+model LessonCompletion {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  courseSlug String
+  moduleIdx  Int
+  lessonIdx  Int
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseSlug, moduleIdx, lessonIdx])
+  @@index([userId])
+}
