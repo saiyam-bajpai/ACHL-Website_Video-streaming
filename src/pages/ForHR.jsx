@@ -39,14 +39,14 @@ const HR_FEATURES = [
 ];
 
 const HR_PARTNERS = [
-  { company: 'Google', category: 'Tech & AI Systems', roles: 'Software & Strategy Roles', logo: 'G' },
-  { company: 'Microsoft', category: 'Enterprise & Cloud', roles: 'Product & System Architects', logo: 'MS' },
-  { company: 'McKinsey & Company', category: 'Management Consulting', roles: 'Strategic Analysts', logo: 'McK' },
-  { company: 'Razorpay', category: 'Fintech Infrastructure', roles: 'Backend & Product Leads', logo: 'RZP' },
-  { company: 'Swiggy', category: 'Logistics & Consumer', roles: 'Ops & Engineering', logo: 'SWG' },
-  { company: 'Zerodha', category: 'Capital Markets & Systems', roles: 'Core Systems Engineers', logo: 'ZRD' },
-  { company: 'CRED', category: 'Financial Tech & Design', roles: 'Strategic Product Leads', logo: 'CRD' },
-  { company: 'BCG', category: 'Strategic Advisory', roles: 'Strategy Associates', logo: 'BCG' },
+  { company: 'McKinsey & Company', category: 'MBA Strategy & Consulting', roles: 'Management Consultant & Strategic Analyst', logo: 'McK' },
+  { company: 'Goldman Sachs', category: 'MBA Finance & Investment Banking', roles: 'Financial Analyst & Wealth Strategist', logo: 'GS' },
+  { company: 'Hindustan Unilever (HUL)', category: 'MBA Marketing & Sales', roles: 'Brand Manager & Marketing Strategist', logo: 'HUL' },
+  { company: 'Amazon', category: 'MBA Operations & Supply Chain', roles: 'Supply Chain Specialist & Operations Lead', logo: 'AMZ' },
+  { company: 'Deloitte', category: 'MBA Business Analytics', roles: 'Data & Business Analytics Consultant', logo: 'DEL' },
+  { company: 'Accenture Strategy', category: 'MBA General Management', roles: 'Corporate Strategy Associate', logo: 'ACN' },
+  { company: 'HDFC Bank', category: 'MBA Banking & Wealth Management', roles: 'Relationship Manager & Portfolio Strategist', logo: 'HDFC' },
+  { company: 'Procter & Gamble (P&G)', category: 'MBA Brand Management', roles: 'Product & Brand Marketing Lead', logo: 'P&G' },
 ];
 
 export default function ForHR() {
@@ -259,7 +259,7 @@ export default function ForHR() {
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Strategic Analyst, Product Specialist, System Architect"
+                    placeholder="e.g. Brand Manager (MBA Marketing), Financial Analyst (MBA Finance), Strategy Consultant (MBA Strategy)"
                     value={formData.roleRequirement}
                     onChange={(e) => setFormData({ ...formData, roleRequirement: e.target.value })}
                   />

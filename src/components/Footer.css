@@ -18,9 +18,16 @@
   gap: 16px;
 }
 
-.footer__logo-text {
-  color: #F9F8F6;
-  font-size: 28px;
+.footer__logo-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.footer__logo-img {
+  height: 52px;
+  max-width: 200px;
+  object-fit: contain;
+  display: block;
 }
 
 .footer__desc {

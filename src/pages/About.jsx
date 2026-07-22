@@ -18,10 +18,10 @@ const VALUES = [
 
 const TEAM_MEMBERS = [
   {
-    name: 'Marcus Chen',
+    name: 'Tushar Nandawat',
     role: 'Venture Architect & Principal',
-    initials: 'MC',
-    photo: '', // Put picture URL here e.g. '/images/team/marcus.jpg'
+    initials: 'TN',
+    photo: '',
     bio: 'Pioneer in first-principles venture building and critical thinking frameworks.',
     tags: ['Venture Architecture', 'Mental Models'],
     social: { linkedin: 'https://www.linkedin.com/in/achl-think-3237a13b5/' },

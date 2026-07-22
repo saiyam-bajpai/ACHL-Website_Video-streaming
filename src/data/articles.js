@@ -55,7 +55,7 @@ export const ARTICLES = [
     slug: 'first-principles-deconstruction-guide',
     title: 'First-Principles Deconstruction: Rebuilding Complex Systems from Scratch',
     category: 'Critical Thinking',
-    author: 'Marcus Chen',
+    author: 'Tushar Nandawat',
     date: 'July 05, 2026',
     readTime: '8 min read',
     summary: 'Stop relying on analogies and "best practices." Learn how to strip a complex problem down to its physical and logical limits to create breakthrough solutions.',

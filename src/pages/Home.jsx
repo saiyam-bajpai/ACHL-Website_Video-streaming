@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import { apiRequest } from '../utils/api';
+import { PROGRAM_PACKAGES } from '../data/programsData';
 import founderImg from '../assets/founder.jpg';
 import './Home.css';
 
@@ -81,36 +82,46 @@ const FRAMEWORKS = [
 ];
 
 const HIRING_PARTNERS = [
-  'Google', 'Microsoft', 'McKinsey & Company', 'Razorpay', 'Swiggy', 
-  'Flipkart', 'BCG', 'Zerodha', 'CRED', 'Zomato', 'Urban Company', 'InMobi'
+  'McKinsey & Company (Strategy)', 
+  'Goldman Sachs (Finance)', 
+  'Hindustan Unilever (Marketing)', 
+  'Amazon (Operations & Supply Chain)', 
+  'Deloitte (Business Analytics)', 
+  'Accenture Strategy (Consulting)', 
+  'HDFC Bank (Banking & Wealth Management)', 
+  'Procter & Gamble (Brand Management)', 
+  'Boston Consulting Group (Corporate Strategy)', 
+  'Tata Administrative Services (General Management)', 
+  'PricewaterhouseCoopers (Financial Advisory)', 
+  'KPMG (Risk & Governance)'
 ];
 
 const TESTIMONIALS = [
   {
-    quote: "ACHL completely reframed how I approach complex software engineering problems. The Socratic deconstruction drills helped me crack strategy interviews at top tech firms.",
+    quote: "ACHL completely reframed how I approach complex business & strategy problems. The Socratic deconstruction drills helped me crack management consulting interviews at top global firms.",
     author: "Rohan Verma",
-    title: "Software Engineer at Razorpay",
+    title: "Strategy Consultant (MBA Strategy Alum)",
     track: "ACET Graduate 2025",
   },
   {
-    quote: "As a Talent Acquisition Lead, finding candidates who think from first principles instead of copying templates is rare. ACHL's hiring network delivers pre-vetted thinkers who hit the ground running.",
+    quote: "As a Talent Acquisition Lead, finding candidates who think from first principles in finance, marketing, and operations is rare. ACHL delivers pre-vetted MBA thinkers who hit the ground running.",
     author: "Ananya Sharma",
-    title: "Head of Talent Acquisition, Novum Tech",
+    title: "Head of Talent Acquisition (Corporate & MBA Hiring)",
     track: "Hiring Partner",
   },
   {
-    quote: "The risk decomposition and venture validation modules saved our startup months of wasted code. We validated demand with real pre-orders before writing a single line of backend logic.",
+    quote: "The risk decomposition and venture validation modules saved our startup months of wasted capital. We validated market demand with real unit economics before launching.",
     author: "Aditya Patel",
-    title: "Co-Founder, Synapse AI",
+    title: "Co-Founder (MBA Entrepreneurship)",
     track: "Aspiring Founders Track",
   },
 ];
 
 const TEAM_MEMBERS = [
   {
-    name: 'Marcus Chen',
+    name: 'Tushar Nandawat',
     role: 'Venture Architect & Principal',
-    initials: 'MC',
+    initials: 'TN',
     bio: 'Pioneer in first-principles venture building and critical thinking frameworks.',
     tags: ['Venture Architecture', 'Mental Models'],
     social: { linkedin: 'https://www.linkedin.com/in/achl-think-3237a13b5/' },
@@ -453,7 +464,7 @@ export default function Home() {
             </p>
           </Reveal>
           <Reveal delay={0.16} className="problem-sec__metric">
-            <h3>92%</h3>
+            <h3>45.9%</h3>
             <p>
               Every year, over one crore students graduate in India, but according to the India Skills Report 2024, only 45.9% are considered employable. That means more than half of our degree holders are not job-ready.
             </p>
@@ -494,22 +505,22 @@ export default function Home() {
             <p>Select from intensive programs combining theory, coding, and peer reviews.</p>
           </Reveal>
           <div className="programs-grid">
-            {COURSES.map((c, index) => (
-              <Reveal key={c.slug} delay={index * 0.08} className="program-card hover-lift border-glow">
+            {PROGRAM_PACKAGES.map((pkg, index) => (
+              <Reveal key={pkg.slug} delay={index * 0.08} className="program-card hover-lift border-glow">
                 <div className="program-card__img">
-                  <span className="program-card__tag">{c.category}</span>
-                  {c.title.split(' ')[0]}
+                  <span className="program-card__tag">{pkg.tag}</span>
+                  {pkg.tag}
                 </div>
                 <div className="program-card__body">
                   <div className="program-card__meta">
-                    <span>{c.duration}</span>
+                    <span>{pkg.price}</span>
                     <span>•</span>
-                    <span>{c.format}</span>
+                    <span>ACHL Track</span>
                   </div>
-                  <h3>{c.title}</h3>
-                  <p>{c.desc}</p>
+                  <h3>{pkg.title || pkg.tag}</h3>
+                  <p>{pkg.desc}</p>
                   <div className="program-card__footer">
-                    <span className="program-card__price">{c.price}</span>
+                    <span className="program-card__price">{pkg.price}</span>
                     <Link to={`/programs`} className="program-card__link">
                       Explore program →
                     </Link>
@@ -573,8 +584,8 @@ export default function Home() {
                 </ul>
               </Reveal>
 
-              {/* Card 2: Aspiring Founders (Dark) */}
-              <Reveal delay={0.16} className="audience-card-v2 audience-card-v2--dark">
+              {/* Card 2: Aspiring Founders */}
+              <Reveal delay={0.16} className="audience-card-v2">
                 <div className="audience-card__top">
                   <div className="audience-card__icon-circle">{AUDIENCES_DATA.founders.icon}</div>
                 </div>

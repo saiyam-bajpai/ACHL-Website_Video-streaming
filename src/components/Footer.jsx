@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
 import './Footer.css';
 
 const YEAR = new Date().getFullYear();
@@ -8,7 +9,9 @@ export default function Footer() {
     <footer className="footer bg-noise">
       <div className="container footer__grid">
         <div className="footer__brand">
-          <span className="logo-text footer__logo-text">ACHL<span className="logo-cursor">_</span></span>
+          <Link to="/" aria-label="ACHL Home" className="footer__logo-link">
+            <img src={logo} alt="ACHL - Question the obvious" className="footer__logo-img" />
+          </Link>
           <p className="footer__desc">
             Learn how to think, validate, decide, and build better. Building critical thinkers, first-time founders, and startup teams in the era of AI.
           </p>

@@ -46,7 +46,7 @@ export const COURSES = [
     level: 'Beginner to Intermediate',
     price: '$699',
     priceVal: 699,
-    instructor: 'Marcus Chen',
+    instructor: 'Tushar Nandawat',
     instructorTitle: 'Venture Architect & Investor',
     desc: 'A hands-on framework to validate startup ideas, test actual market demand, and pitch using first-principles thinking.',
     thumbnailText: 'VALIDATE',
