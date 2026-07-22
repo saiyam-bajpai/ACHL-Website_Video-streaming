@@ -406,7 +406,21 @@ export default function Home() {
       <section className="founder">
         <div className="container founder__grid">
           <Reveal className="founder__image-wrap">
-            <img src="/images/founder.png" alt="Founder of ACHL" className="founder__image" />
+            <img
+              src="/images/founder.jpg"
+              onError={(e) => {
+                const currentSrc = e.target.src;
+                if (currentSrc.endsWith('founder.jpg')) {
+                  e.target.src = '/images/founder.png';
+                } else if (currentSrc.endsWith('founder.png')) {
+                  e.target.src = '/images/founder.jpeg';
+                } else if (currentSrc.endsWith('founder.jpeg')) {
+                  e.target.src = '/images/founder_old.png';
+                }
+              }}
+              alt="Founder of ACHL"
+              className="founder__image"
+            />
           </Reveal>
           <div className="founder__content">
             <Reveal>

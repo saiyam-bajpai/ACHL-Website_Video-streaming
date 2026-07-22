@@ -24,6 +24,7 @@ import Admin from './pages/Admin';
 import TestConsole from './pages/TestConsole';
 import NotFound from './pages/NotFound';
 import Investor from './pages/Investor';
+import StatusPage from './pages/StatusPage';
 
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -53,6 +54,9 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        
+        {/* Hidden Super Admin Status & Component Diagnostics Route */}
+        <Route path="/no-access/status" element={<StatusPage />} />
         
         {/* Student Workspace */}
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />

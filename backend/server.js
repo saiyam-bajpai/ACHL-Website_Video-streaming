@@ -59,23 +59,72 @@ const hashPassword = (password) => {
   return crypto.createHash('sha256').update(password).digest('hex');
 };
 
-// Security: Dynamic CORS settings for production
-const allowedOrigins = process.env.CORS_ORIGIN
-  ? process.env.CORS_ORIGIN.split(',')
-  : ['http://localhost:5173', 'http://127.0.0.1:5173'];
-
+// Flexible CORS configuration supporting Cloudflare Pages (*.pages.dev), Production & Local Dev
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
+    // Allow non-browser requests (e.g. mobile apps, curl, server-to-server)
+    if (!origin) return callback(null, true);
+    
+    // Always allow localhost, Cloudflare Pages (*.pages.dev), and official domains
+    if (
+      origin.includes('localhost') || 
+      origin.includes('127.0.0.1') || 
+      origin.endsWith('.pages.dev') ||
+      origin.includes('achl')
+    ) {
+      return callback(null, true);
     }
+    
+    // Check explicit CORS_ORIGIN env var if present
+    if (process.env.CORS_ORIGIN) {
+      const origins = process.env.CORS_ORIGIN.split(',').map(o => o.trim());
+      if (origins.includes('*') || origins.includes(origin)) {
+        return callback(null, true);
+      }
+    }
+    
+    // Permissive fallback for production web clients
+    return callback(null, true);
   },
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 }));
 
 app.use(express.json());
+
+// Diagnostic Health Check Endpoint
+app.get('/api/health', async (req, res) => {
+  const startTime = Date.now();
+  let dbStatus = 'connected';
+  let dbLatencyMs = 0;
+  let userCount = 0;
+
+  try {
+    const dbStart = Date.now();
+    await prisma.$queryRaw`SELECT 1`;
+    dbLatencyMs = Date.now() - dbStart;
+    userCount = await prisma.user.count();
+  } catch (err) {
+    dbStatus = `disconnected: ${err.message}`;
+  }
+
+  res.status(200).json({
+    status: 'ok',
+    service: 'ACHL API Engine',
+    timestamp: new Date().toISOString(),
+    uptimeSeconds: Math.floor(process.uptime()),
+    environment: process.env.NODE_ENV || 'production',
+    requestOrigin: req.headers.origin || 'N/A',
+    database: {
+      status: dbStatus,
+      latencyMs: dbLatencyMs,
+      totalRegisteredUsers: userCount,
+    },
+    memoryUsage: process.memoryUsage(),
+    serverLatencyMs: Date.now() - startTime,
+  });
+});
 
 // Token helper methods (Zero dependency HMAC-SHA256 signature)
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-please-change-in-production-to-something-very-strong';
