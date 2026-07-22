@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import { apiRequest } from '../utils/api';
+import founderImg from '../assets/founder.jpg';
 import './Home.css';
 
 const FRAMEWORKS = [
@@ -407,16 +408,9 @@ export default function Home() {
         <div className="container founder__grid">
           <Reveal className="founder__image-wrap">
             <img
-              src="/images/founder.jpg"
+              src={founderImg}
               onError={(e) => {
-                const currentSrc = e.target.src;
-                if (currentSrc.endsWith('founder.jpg')) {
-                  e.target.src = '/images/founder.png';
-                } else if (currentSrc.endsWith('founder.png')) {
-                  e.target.src = '/images/founder.jpeg';
-                } else if (currentSrc.endsWith('founder.jpeg')) {
-                  e.target.src = '/images/founder_old.png';
-                }
+                e.target.src = '/images/founder.jpg';
               }}
               alt="Founder of ACHL"
               className="founder__image"
