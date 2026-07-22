@@ -5,8 +5,8 @@ import './Navbar.css';
 
 const LINKS = [
   { to: '/programs', label: 'Programs' },
-  { to: '/for-startups', label: 'For Startups' },
-  { to: '/resources', label: 'Resources' },
+  { to: '/for-hr', label: "For HR's" },
+  { to: '/resources', label: 'Explore ACHL' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ];

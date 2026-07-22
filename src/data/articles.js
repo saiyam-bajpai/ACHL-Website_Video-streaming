@@ -1,104 +1,104 @@
 export const ARTICLES = [
   {
-    slug: 'first-principles-thinking-deconstruction',
-    title: 'First-Principles Thinking: How to Deconstruct Any Complex Problem',
+    slug: 'the-art-of-critical-thinking-in-ai-era',
+    title: 'The Art of Critical Thinking: Why Problem Framing Beats Fast Answers in the AI Era',
+    category: 'Critical Thinking',
+    author: 'ACHL Academic Faculty',
+    date: 'July 20, 2026',
+    readTime: '6 min read',
+    summary: 'Generative models can synthesize answers instantly. Value has shifted from knowing facts to asking the right questions, deconstructing assumptions, and framing real problems.',
+    mediaText: 'CRITICAL THINKING',
+    content: `
+      <p>In a world where generative AI can write code templates, generate business summaries, and answer standard textbook questions in milliseconds, memorization has lost its premium.</p>
+      
+      <h2>The Shift from Answers to Questioning</h2>
+      <p>For decades, traditional education rewarded students who could recall formulas and repeat solution patterns. But when machines can supply answers on demand, the most valuable cognitive asset is no longer having the answer—it is knowing how to frame the problem.</p>
+      
+      <h2>The 3 Pillars of Strategic Critical Thinking</h2>
+      <ul>
+        <li><strong>1. Deconstruct Hidden Assumptions:</strong> Every strategy or product design relies on unstated premises. Critical thinkers systematically unearth and test these assumptions before committing resources.</li>
+        <li><strong>2. Second-Order Effects:</strong> Simple thinkers ask "What happens next?" Strategic thinkers ask "And then what?" evaluating ripple effects across complex systems.</li>
+        <li><strong>3. Cognitive Bias Auditing:</strong> Recognizing confirmation bias, sunk-cost Fallacy, and availability heuristics in real-time decision-making.</li>
+      </ul>
+      
+      <h2>Building Intellectual Leverage</h2>
+      <p>To remain irreplaceable, professionals must transition from passive consumers of information to active deconstructors. Critical thinking is not an innate gift—it is a repeatable mental system that can be trained and sharpened.</p>
+    `
+  },
+  {
+    slug: 'socratic-dialogue-framework-unearthing-truth',
+    title: 'Socratic Dialogue Framework: How Rigorous Questioning Unearths Deep Truths',
     category: 'Critical Thinking',
     author: 'Prof. Evelyn Vance',
-    date: 'July 12, 2026',
-    readTime: '6 min read',
-    summary: 'An introduction to breaking problems down to their core truths and building sound logic upwards.',
+    date: 'July 15, 2026',
+    readTime: '7 min read',
+    summary: 'A step-by-step operational guide to using Socratic questioning to deconstruct business problems, challenge weak logic, and reach foundational clarity.',
+    mediaText: 'SOCRATIC METHOD',
+    content: `
+      <p>Socrates believed that wisdom begins with admitting ignorance. By systematically asking disciplined, probing questions, he forced his peers to examine their underlying beliefs and discover logical inconsistencies.</p>
+      
+      <h2>The Six Categories of Socratic Questions</h2>
+      <ol>
+        <li><strong>Clarification:</strong> "What exactly do we mean by this term, and what is the core premise?"</li>
+        <li><strong>Probing Assumptions:</strong> "What are we assuming here, and what if the exact opposite were true?"</li>
+        <li><strong>Probing Rationale & Evidence:</strong> "What empirical data supports this conclusion, and how reliable is that signal?"</li>
+        <li><strong>Viewpoints & Perspectives:</strong> "How would a competitor, a customer, or a severe skeptic view this decision?"</li>
+        <li><strong>Probing Consequences:</strong> "What are the long-term trade-offs if this hypothesis is wrong?"</li>
+        <li><strong>Questions About the Question:</strong> "Why did we ask this question in the first place, and is it the right bottleneck to focus on?"</li>
+      </ol>
+      
+      <h2>Applying Socratic Method in Leadership</h2>
+      <p>Instead of imposing immediate solutions, senior operators use Socratic dialogue during design reviews and strategic syncs to pressure-test assumptions and build team-wide mental alignment.</p>
+    `
+  },
+  {
+    slug: 'first-principles-deconstruction-guide',
+    title: 'First-Principles Deconstruction: Rebuilding Complex Systems from Scratch',
+    category: 'Critical Thinking',
+    author: 'Marcus Chen',
+    date: 'July 05, 2026',
+    readTime: '8 min read',
+    summary: 'Stop relying on analogies and "best practices." Learn how to strip a complex problem down to its physical and logical limits to create breakthrough solutions.',
     mediaText: 'FIRST PRINCIPLES',
     content: `
-      <p>Every day, we make decisions based on analogies. We look at what others are doing, copy their templates, and tweak them slightly. While this is efficient for routine tasks, it fails catastrophically when facing novel, complex problems or scaling a startup.</p>
+      <p>Reasoning by analogy means copying what others are doing with minor variations. Reasoning by first principles means stripping away conventional wisdom until you reach foundational truths, then building upwards from there.</p>
       
-      <h2>What is First-Principles Thinking?</h2>
-      <p>First-principles thinking is the act of boiling a system down to its most basic, foundational truths—things you are absolutely certain are true—and building your reasoning up from there. It was famously popularized by Aristotle and utilized by modern builders like Elon Musk.</p>
+      <h2>Why Analogies Fail in High-Stakes Environments</h2>
+      <p>When you copy industry "best practices," you inherit all the hidden inefficiencies, legacy trade-offs, and outdated constraints of the past. When market conditions change rapidly, analogy-based strategies collapse.</p>
       
-      <h2>The Two-Step Deconstruction Framework</h2>
+      <h2>The 3-Step First-Principles Blueprint</h2>
       <ul>
-        <li><strong>Step 1: Identify and Clarify Assumptions.</strong> When building a product, write down all the statements you believe to be true. E.g., "Customers want a dashboard to view metrics because they currently download CSVs."</li>
-        <li><strong>Step 2: Breakdown to Foundations.</strong> Ask why they download CSVs. Is it for the chart, or is it to import data into another system? Deconstruct the core transaction.</li>
+        <li><strong>Step 1: Identify your baseline assumptions.</strong> Write down every belief you currently hold about the problem.</li>
+        <li><strong>Step 2: Deconstruct to fundamental truths.</strong> Ask "Is this a fundamental law of physics/logic, or just an industry convention?"</li>
+        <li><strong>Step 3: Create new solutions from scratch.</strong> Combine the foundational elements into a novel architecture free of historical debt.</li>
       </ul>
       
-      <h2>Reasoning from First Principles vs. Analogy</h2>
-      <p>Analogy allows you to copy what already exists (incremental optimization). First principles allow you to understand the underlying physical or logical limits, enabling you to build entirely new solutions (disruptive innovation). Next time you face a blocker, strip away the "best practices" and ask: What are the fundamental constraints?</p>
+      <h2>Case Study: Battery Technology & Unit Economics</h2>
+      <p>When experts claimed battery packs would always cost $600/kWh, first-principles thinkers looked at the spot prices of cobalt, nickel, and lithium, realizing the raw material limit was under $80/kWh. That deconstruction enabled the modern electric vehicle industry.</p>
     `
   },
   {
-    slug: 'validation-playbook-testing-without-code',
-    title: 'The Validation Playbook: Testing Startup Ideas Without Code',
-    category: 'Founder Guides',
-    author: 'Marcus Chen',
-    date: 'June 28, 2026',
-    readTime: '8 min read',
-    summary: 'A step-by-step framework to launch high-signal smoke tests, gather customer data, and measure intent.',
-    mediaText: 'TEST DEMAND',
-    content: `
-      <p>The number one reason startups fail is not the tech; it is building something nobody actually wants. Founders spend months coding features, setting up databases, and configuring deployments, only to launch to silence.</p>
-      
-      <h2>The Premise of Smoke Testing</h2>
-      <p>A smoke test is an experiment designed to capture actual customer intent before a product is built. It moves beyond "would you buy this?" (which yields false positives) to measuring what action a user is willing to take (time, data, or money).</p>
-      
-      <h2>Three High-Signal Validation Experiments</h2>
-      <ul>
-        <li><strong>The Landing Page Test.</strong> Build a simple landing page detailing the product proposition. Include a prominent call to action: "Secure early access for $10" or "Submit your API keys to get started." Measure conversion percentages.</li>
-        <li><strong>The Concierge MVP.</strong> Deliver the service value manually. If you are building an AI travel scheduler, act as the agent yourself. Send recommendations via email. Understand the user friction before automating.</li>
-        <li><strong>Ad Campaigns.</strong> Run targeted search or social ads toward a landing page. Measure Click-Through-Rate (CTR). High CTR indicates strong conceptual resonance.</li>
-      </ul>
-      
-      <h2>Analyzing the Signal</h2>
-      <p>If users are unwilling to input their email, fill out a detailed form, or pre-order, building a full backend database will not solve the issue. Use these validation loops to pivot early and preserve capital.</p>
-    `
-  },
-  {
-    slug: 'technical-debt-vs-execution-speed',
-    title: 'Technical Debt vs. Execution Speed: A Founder\'s Dilemma',
-    category: 'Startup Tools',
-    author: 'Sarah Jenkins',
-    date: 'May 15, 2026',
-    readTime: '7 min read',
-    summary: 'When to write dirty code to prove demand, and how to transition into a robust, scaling system.',
-    mediaText: 'TECH DEBT',
-    content: `
-      <p>Every engineering founder struggles with a core conflict: writing clean, modular code with complete test coverage vs. shipping features quickly to capture customer feedback.</p>
-      
-      <h2>Understanding Good Debt</h2>
-      <p>Just like financial debt, technical debt is not inherently bad. Taking on technical debt allows you to accelerate your learning loop. If your startup dies because you spent three months setting up microservices instead of finding product-market fit, your perfect code is useless.</p>
-      
-      <h2>The Tech Debt Decision Matrix</h2>
-      <ul>
-        <li><strong>Prototypes (Throwaway Code).</strong> When validating a feature, prioritize speed. Hardcode data, bypass edge cases, and use monolithic setups. The goal is to see if the user cares.</li>
-        <li><strong>Core Systems (High-Investment).</strong> If a schema or flow is critical to security, transactions, or user authentication, invest the time to write clean code, add tests, and establish database integrity.</li>
-      </ul>
-      
-      <h2>Refactoring and Repayment</h2>
-      <p>The key to technical debt is having a clear repayment trigger. When a feature shows consistent usage, schedule a refactoring sprint. Document where the shortcuts were taken and clean them up before scaling active traffic.</p>
-    `
-  },
-  {
-    slug: 'co-piloting-intellect-generative-ai',
-    title: 'Co-piloting Your Intellect: Partnering with Generative AI',
-    category: 'AI & Learning',
+    slug: 'cognitive-bias-recognition-decision-making',
+    title: 'Cognitive Bias Recognition: Overcoming Mental Shortcuts in Critical Moments',
+    category: 'Critical Thinking',
     author: 'Dr. Liam Patel',
-    date: 'April 22, 2026',
-    readTime: '5 min read',
-    summary: 'How to use generative models as dialectical partners to pressure-test your decisions and explore edge cases.',
-    mediaText: 'AI CO-PILOT',
+    date: 'June 28, 2026',
+    readTime: '6 min read',
+    summary: 'Understand the most dangerous cognitive shortcuts that distort decision-making under uncertainty, and how to implement pre-mortems to neutralize them.',
+    mediaText: 'BIAS AUDITING',
     content: `
-      <p>Most people treat generative AI as a search engine or a text generator. They ask it to write emails, summarize articles, or produce templates. This ignores its most powerful capability: acting as a reasoning sparring partner.</p>
+      <p>Our brains evolved for quick survival decisions on the savanna, using mental shortcuts (heuristics) to save energy. However, in modern strategy, finance, and engineering, these shortcuts frequently lead to flawed conclusions.</p>
       
-      <h2>The Dialectical Prompts</h2>
-      <p>To use AI as an intellectual co-pilot, you must structure prompts that force the model to critique and challenge your ideas rather than agreeing with them.</p>
-      
-      <h2>Three Prompts for Pressure-Testing</h2>
+      <h2>4 Critical Biases Distorting Decision-Making</h2>
       <ul>
-        <li><strong>The Devil's Advocate.</strong> "I am planning to launch a SaaS tool for freelance video editors. Play the role of a cynical venture capitalist. Critique my value proposition and list 5 reasons this business will fail."</li>
-        <li><strong>Edge-Case Analysis.</strong> "Here is my database schema for an online marketplace. Review it and identify potential concurrency issues, race conditions, or edge cases that could lead to inconsistent state."</li>
-        <li><strong>Feynman Sparring.</strong> "Explain first-principles thinking to me like I am a beginner, then ask me 3 hard questions to test my understanding."</li>
+        <li><strong>1. Confirmation Bias:</strong> Seeking out data that validates our existing belief while ignoring contradictory evidence.</li>
+        <li><strong>2. Sunk Cost Fallacy:</strong> Continuing to invest time or capital into a failing project simply because of what has already been spent.</li>
+        <li><strong>3. Availability Heuristic:</strong> Overweighting recent or emotionally vivid events when assessing future probabilities.</li>
+        <li><strong>4. Overconfidence Effect:</strong> Miscalculating risk margins and execution speed under ambiguous conditions.</li>
       </ul>
       
-      <h2>Systematic Synthesis</h2>
-      <p>Do not accept AI outputs blindly. Use the critiques to revise your product specs, write better code constraints, and anticipate real-world failure states before they occur.</p>
+      <h2>The Pre-Mortem Protocol</h2>
+      <p>Before launching any project or strategic initiative, gather your team and say: <em>"Imagine we are 12 months in the future, and this initiative has failed completely. Write down a 1-page post-mortem detailing why it failed."</em> This simple protocol bypasses optimism bias and exposes hidden vulnerabilities.</p>
     `
   }
 ];

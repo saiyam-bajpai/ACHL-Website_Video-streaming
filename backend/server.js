@@ -4,6 +4,41 @@ import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
 import rateLimit from 'express-rate-limit';
 import crypto from 'crypto';
+import nodemailer from 'nodemailer';
+
+const NOTIFICATION_RECIPIENTS = ['agyaat@achllearnings.com', 'prabaljaiswal69420@gmail.com'];
+
+// Nodemailer transport setup with environment fallback
+const mailTransport = nodemailer.createTransport({
+  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  port: parseInt(process.env.SMTP_PORT || '587'),
+  secure: process.env.SMTP_SECURE === 'true',
+  auth: {
+    user: process.env.SMTP_USER || process.env.EMAIL_USER || '',
+    pass: process.env.SMTP_PASS || process.env.EMAIL_PASS || '',
+  },
+});
+
+const sendNotificationEmail = async ({ subject, htmlText }) => {
+  console.log(`[EMAIL NOTIFICATION]: ${subject}`);
+  console.log(`Recipients: ${NOTIFICATION_RECIPIENTS.join(', ')}`);
+  
+  if (process.env.SMTP_USER || process.env.EMAIL_USER) {
+    try {
+      await mailTransport.sendMail({
+        from: `"ACHL Platform" <${process.env.SMTP_USER || process.env.EMAIL_USER}>`,
+        to: NOTIFICATION_RECIPIENTS.join(', '),
+        subject: subject,
+        html: htmlText,
+      });
+      console.log('Email sent successfully via Nodemailer.');
+    } catch (err) {
+      console.error('Nodemailer dispatch error:', err.message);
+    }
+  } else {
+    console.log('Note: SMTP credentials not set in .env. Email payload logged successfully to server output.');
+  }
+};
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -469,6 +504,70 @@ app.post('/api/support/tickets', authGuard, async (req, res, next) => {
     });
 
     res.status(201).json({ message: 'Ticket submitted successfully.', ticketId: ticket.id });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Public Contact Submission Endpoint with Nodemailer Notification
+app.post('/api/contact', ticketLimiter, async (req, res, next) => {
+  try {
+    const { name, email, subject, message } = req.body;
+    if (!name || !email || !message) {
+      return res.status(400).json({ error: 'Name, email, and message are required.' });
+    }
+
+    const emailSubject = `[ACHL Contact Inquiry] ${subject || 'General Inquiry'} from ${name}`;
+    const htmlBody = `
+      <h2>New Contact Form Inquiry</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Subject:</strong> ${subject}</p>
+      <p><strong>Message:</strong></p>
+      <blockquote style="background: #f4f4f4; padding: 12px; border-left: 4px solid #7A0010;">
+        ${message.replace(/\n/g, '<br/>')}
+      </blockquote>
+      <p style="font-size: 12px; color: #888;">Received at ${new Date().toISOString()}</p>
+    `;
+
+    // Dispatch email notification
+    await sendNotificationEmail({ subject: emailSubject, htmlText: htmlBody });
+
+    res.status(200).json({ message: 'Contact message received successfully.' });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Public HR Hiring Requirement Submission Endpoint with Nodemailer Notification
+app.post('/api/hr-submission', ticketLimiter, async (req, res, next) => {
+  try {
+    const { name, companyName, email, phone, designation, roleRequirement, openings, message } = req.body;
+    if (!name || !companyName || !email || !roleRequirement) {
+      return res.status(400).json({ error: 'Name, company name, email, and role requirement are required.' });
+    }
+
+    const emailSubject = `[ACHL HR Hiring Requirement] ${companyName} - ${roleRequirement}`;
+    const htmlBody = `
+      <h2>New Recruiter Hiring Requirement</h2>
+      <p><strong>Recruiter Name:</strong> ${name}</p>
+      <p><strong>Company:</strong> ${companyName}</p>
+      <p><strong>Work Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
+      <p><strong>Designation:</strong> ${designation || 'HR'}</p>
+      <p><strong>Target Positions:</strong> ${roleRequirement}</p>
+      <p><strong>Openings:</strong> ${openings || '1-5'}</p>
+      <p><strong>Additional Details:</strong></p>
+      <blockquote style="background: #f4f4f4; padding: 12px; border-left: 4px solid #C50018;">
+        ${(message || 'No additional details specified').replace(/\n/g, '<br/>')}
+      </blockquote>
+      <p style="font-size: 12px; color: #888;">Received at ${new Date().toISOString()}</p>
+    `;
+
+    // Dispatch email notification
+    await sendNotificationEmail({ subject: emailSubject, htmlText: htmlBody });
+
+    res.status(200).json({ message: 'HR hiring requirement submitted successfully.' });
   } catch (error) {
     next(error);
   }

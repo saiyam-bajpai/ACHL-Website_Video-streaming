@@ -1,0 +1,284 @@
+.for-hr-hero {
+  padding: calc(var(--nav-h) + 60px) 0 80px;
+  background: var(--white);
+  text-align: center;
+}
+
+.eyebrow-badge {
+  display: inline-block;
+  background: rgba(197, 0, 24, 0.08);
+  color: var(--red);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 6px 16px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.for-hr-hero__title {
+  font-size: clamp(32px, 4.5vw, 54px);
+  font-weight: 800;
+  color: #111111;
+  line-height: 1.15;
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+
+.for-hr-hero__subtitle {
+  font-size: 17px;
+  color: #555452;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.for-hr-hero__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+  margin-bottom: 64px;
+}
+
+.for-hr-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .for-hr-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.for-hr-card {
+  background: #FAF8F7;
+  border: 1.5px solid #ECE7E3;
+  padding: 40px 32px;
+  border-radius: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.for-hr-card__icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #F5E8E8;
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.for-hr-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #111111;
+}
+
+.for-hr-card p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #666460;
+}
+
+/* Form Section */
+.for-hr-form-sec {
+  padding: 100px 0;
+  background: #F7F3F0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.for-hr-form-card {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--white);
+  border: 1.5px solid var(--border-soft);
+  padding: 48px;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+}
+
+.hr-requirement-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 640px) {
+  .form-grid-2col {
+    grid-template-columns: 1fr;
+  }
+  .for-hr-form-card {
+    padding: 24px;
+  }
+}
+
+.hr-requirement-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #333331;
+}
+
+.hr-requirement-form input,
+.hr-requirement-form select,
+.hr-requirement-form textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #DDD8D3;
+  background: #FAF8F7;
+  font-family: inherit;
+  font-size: 14.5px;
+  color: #111;
+  transition: border-color 0.2s ease;
+}
+
+.hr-requirement-form input:focus,
+.hr-requirement-form select:focus,
+.hr-requirement-form textarea:focus {
+  outline: none;
+  border-color: var(--red);
+  background: var(--white);
+}
+
+.form-error-banner {
+  background: rgba(197, 0, 24, 0.08);
+  color: var(--red);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  border-left: 4px solid var(--red);
+}
+
+.form-success-msg {
+  text-align: center;
+  padding: 32px 16px;
+}
+
+.form-success-msg .success-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(128, 0, 32, 0.1);
+  color: var(--maroon);
+  font-size: 32px;
+  font-weight: 800;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.form-success-msg h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.form-success-msg p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Hiring Partners Static Card Grid */
+.hr-partners-sec {
+  padding: 100px 0 120px;
+  background: var(--white);
+  border-top: 1px solid var(--border-soft);
+}
+
+.hr-partners-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.hr-partner-card {
+  background: #FAF8F7;
+  border: 1.5px solid #ECE7E3;
+  padding: 32px 24px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.hr-partner-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.05);
+  border-color: rgba(197, 0, 24, 0.3);
+}
+
+.hr-partner-card__logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  background: var(--black);
+  color: var(--red);
+  font-size: 20px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.hr-partner-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+.hr-partner-card__category {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--grey);
+  margin-bottom: 16px;
+}
+
+.hr-partner-card__roles-box {
+  width: 100%;
+  padding-top: 16px;
+  border-top: 1px solid #ECE7E3;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12.5px;
+}
+
+.hr-partner-card__roles-box span {
+  color: var(--grey);
+}
+
+.hr-partner-card__roles-box strong {
+  color: var(--maroon);
+}
+

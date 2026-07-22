@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
+import ForHR from './pages/ForHR';
+
 // Pages
 import Home from './pages/Home';
 import About from './pages/About';
@@ -43,7 +45,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/programs" element={<Programs />} />
         <Route path="/programs/:slug" element={<ProgramDetail />} />
+        <Route path="/for-hr" element={<ForHR />} />
         <Route path="/for-startups" element={<ForStartups />} />
+        <Route path="/explore" element={<Resources />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/resources/:slug" element={<ResourceDetail />} />
         <Route path="/contact" element={<Contact />} />

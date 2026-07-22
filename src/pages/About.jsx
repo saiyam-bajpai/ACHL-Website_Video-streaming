@@ -16,11 +16,72 @@ const VALUES = [
   },
 ];
 
-const TEAM = [
-  { initials: 'AC', name: 'Marcus Chen', role: 'Venture Architect & Principal' },
-  { initials: 'EV', name: 'Prof. Evelyn Vance', role: 'Director of Critical Thinking Studies' },
-  { initials: 'SJ', name: 'Sarah Jenkins', role: 'Engineering Lead' },
-  { initials: 'LP', name: 'Dr. Liam Patel', role: 'Cognitive Computing Advisor' },
+const TEAM_MEMBERS = [
+  {
+    name: 'Marcus Chen',
+    role: 'Venture Architect & Principal',
+    initials: 'MC',
+    photo: '', // Put picture URL here e.g. '/images/team/marcus.jpg'
+    bio: 'Pioneer in first-principles venture building and critical thinking frameworks.',
+    tags: ['Venture Architecture', 'Mental Models'],
+    social: { linkedin: 'https://www.linkedin.com/in/achl-think-3237a13b5/' },
+  },
+  {
+    name: 'Prof. Evelyn Vance',
+    role: 'Director of Critical Thinking',
+    initials: 'EV',
+    photo: '',
+    bio: 'Former university chair specializing in Socratic dialogue and cognitive bias research.',
+    tags: ['Cognitive Psychology', 'Socratic Pedagogy'],
+    social: { linkedin: 'https://www.linkedin.com/in/achl-think-3237a13b5/' },
+  },
+  {
+    name: 'Sarah Jenkins',
+    role: 'Engineering & Curriculum Lead',
+    initials: 'SJ',
+    photo: '',
+    bio: 'Senior software architect guiding systemic problem solving and AI literacy.',
+    tags: ['Software Architecture', 'System Design'],
+    social: { linkedin: 'https://www.linkedin.com/in/achl-think-3237a13b5/' },
+  },
+  {
+    name: 'Dr. Liam Patel',
+    role: 'Cognitive Computing Advisor',
+    initials: 'LP',
+    photo: '',
+    bio: 'AI researcher focused on LLM reasoning logic, risk decomposition, and ethical frameworks.',
+    tags: ['AI Literacy', 'Decision Systems'],
+    social: { linkedin: 'https://www.linkedin.com/in/achl-think-3237a13b5/' },
+  },
+];
+
+const DEVELOPERS = [
+  {
+    name: 'Prabal Jaiswal',
+    role: 'Lead Full-Stack Developer & Architect',
+    initials: 'PJ',
+    photo: '', // Put profile image URL here e.g. '/images/devs/prabal.jpg'
+    bio: 'Architected the core ACHL platform, interactive assessment engine, database schemas, and recruitment system.',
+    stack: ['React 19', 'Node.js', 'Vite 8', 'Express API', 'Prisma DB'],
+    contact: 'agyaat@achllearnings.com',
+    social: {
+      github: 'https://github.com',
+      linkedin: 'https://www.linkedin.com/in/achl-think-3237a13b5/',
+    },
+  },
+  {
+    name: 'Agyaat & Tech Team',
+    role: 'Frontend & Systems Engineering Team',
+    initials: 'AG',
+    photo: '',
+    bio: 'Crafted responsive modern UI design system, rate-limiting security, mailing services, and admin controls.',
+    stack: ['JavaScript', 'CSS3', 'Nodemailer', 'Authentication', 'Security'],
+    contact: 'agyaat@achllearnings.com',
+    social: {
+      instagram: 'https://www.instagram.com/achl.think',
+      linkedin: 'https://www.linkedin.com/in/achl-think-3237a13b5/',
+    },
+  },
 ];
 
 export default function About() {
@@ -51,13 +112,13 @@ export default function About() {
             </Reveal>
             <Reveal delay={0.08} className="about-section__content">
               <p>
-                For centuries, education was about gathering information. Schools rewarded those who could recall facts, memorize equations, and follow templates. 
+                For centuries, education was about gathering information. Schools rewarded those who could recall facts, memorize equations, and follow templates.
               </p>
               <p>
                 Today, generative models can retrieve, summarize, and outline any topic in milliseconds. Writing code templates and draft copies has become a zero-marginal-cost commodity.
               </p>
               <p>
-                In this new landscape, value shifts from the **answers you have** to the **quality of your reasoning**, your capacity to formulate testable hypotheses, and your speed in executing feedback loops.
+                In this new landscape, value shifts from the <strong>answers you have</strong> to the <strong>quality of your reasoning</strong>, your capacity to formulate testable hypotheses, and your speed in executing feedback loops.
               </p>
             </Reveal>
           </div>
@@ -118,15 +179,96 @@ export default function About() {
         <div className="container">
           <Reveal className="sec-header">
             <span className="eyebrow">The Faculty</span>
-            <h2>Instructors & Advisors</h2>
-            <p>Our team is composed of builders, professors, and technical operators.</p>
+            <h2>Leadership & Academic Team</h2>
+            <p>Our academic leadership is composed of builders, professors, and technical operators.</p>
           </Reveal>
-          <div className="team-grid">
-            {TEAM.map((t, index) => (
-              <Reveal key={t.name} delay={index * 0.08} className="team-card hover-lift">
-                <div className="team-card__avatar">{t.initials}</div>
+
+          <div className="team-cards-wrapper">
+            {TEAM_MEMBERS.map((t, index) => (
+              <Reveal key={t.name} delay={index * 0.08} className="faculty-profile-card">
+                <div className="faculty-avatar-wrap">
+                  {t.photo ? (
+                    <img src={t.photo} alt={t.name} className="faculty-photo" />
+                  ) : (
+                    <div className="faculty-initials">{t.initials}</div>
+                  )}
+                </div>
                 <h3>{t.name}</h3>
-                <p>{t.role}</p>
+                <span className="faculty-role-badge">{t.role}</span>
+                <p className="faculty-bio">{t.bio}</p>
+                <div className="faculty-tags-group">
+                  {t.tags.map((tag) => (
+                    <span key={tag} className="tag-chip">{tag}</span>
+                  ))}
+                </div>
+                <a href={t.social.linkedin} target="_blank" rel="noopener noreferrer" className="faculty-link">
+                  LinkedIn →
+                </a>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Developer Section */}
+      <section className="about-developers">
+        <div className="container">
+          <Reveal className="sec-header">
+            <span className="eyebrow">Platform Engineers</span>
+            <h2>Website Engineering & Development Team</h2>
+            <p>Meet the engineers and architects who built the ACHL platform and system infrastructure.</p>
+          </Reveal>
+
+          <div className="dev-cards-wrapper">
+            {DEVELOPERS.map((dev, index) => (
+              <Reveal key={dev.name} delay={index * 0.12} className="dev-profile-card">
+                <div className="dev-profile-header">
+                  <div className="dev-avatar-wrap">
+                    {dev.photo ? (
+                      <img src={dev.photo} alt={dev.name} className="dev-photo" />
+                    ) : (
+                      <div className="dev-initials">{dev.initials}</div>
+                    )}
+                  </div>
+                  <div>
+                    <h3>{dev.name}</h3>
+                    <span className="dev-role-badge">{dev.role}</span>
+                  </div>
+                </div>
+
+                <p className="dev-bio">{dev.bio}</p>
+
+                <div className="dev-stack-box">
+                  <span className="stack-heading">TECH STACK & ARCHITECTURE</span>
+                  <div className="stack-chips">
+                    {dev.stack.map((s) => (
+                      <span key={s} className="stack-chip">{s}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="dev-footer-row">
+                  <a href={`mailto:${dev.contact}`} className="dev-email-btn">
+                    ✉ {dev.contact}
+                  </a>
+                  <div className="dev-social-links">
+                    {dev.social.github && (
+                      <a href={dev.social.github} target="_blank" rel="noopener noreferrer">
+                        GitHub
+                      </a>
+                    )}
+                    {dev.social.linkedin && (
+                      <a href={dev.social.linkedin} target="_blank" rel="noopener noreferrer">
+                        LinkedIn
+                      </a>
+                    )}
+                    {dev.social.instagram && (
+                      <a href={dev.social.instagram} target="_blank" rel="noopener noreferrer">
+                        Instagram
+                      </a>
+                    )}
+                  </div>
+                </div>
               </Reveal>
             ))}
           </div>

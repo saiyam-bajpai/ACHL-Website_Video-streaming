@@ -791,19 +791,76 @@ export default function Admin() {
   };
 
   const renderMessagesTab = () => {
+    const contactSubmissions = JSON.parse(localStorage.getItem('achl_contact_submissions') || '[]');
+    const hrSubmissions = JSON.parse(localStorage.getItem('achl_hr_submissions') || '[]');
+
     return (
       <div className="admin-tab-content">
+        {/* Recruiter / HR Submissions Section */}
+        <Reveal className="admin-section" style={{ marginBottom: '40px' }}>
+          <h2 className="admin-section-title">🏢 Recruiter & HR Hiring Requirements</h2>
+          <p style={{ color: 'var(--grey)', fontSize: '13.5px', marginBottom: '24px' }}>
+            Hiring specifications submitted by HR managers and talent recruiters.
+          </p>
+
+          {hrSubmissions.length === 0 ? (
+            <p style={{ fontStyle: 'italic', color: 'var(--grey)' }}>No HR hiring requirements submitted yet.</p>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {hrSubmissions.map((hr) => (
+                <div key={hr.id} style={{ background: '#FAF8F7', border: '1.5px solid var(--border-soft)', padding: '24px', borderRadius: '12px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '12px', borderBottom: '1px solid rgba(0,0,0,0.06)', paddingBottom: '10px' }}>
+                    <div>
+                      <strong style={{ fontSize: '16px', color: 'var(--red)' }}>{hr.companyName}</strong> — <span>{hr.roleRequirement}</span>
+                      <div style={{ fontSize: '13px', color: '#555', marginTop: '4px' }}>
+                        Recruiter: <strong>{hr.name}</strong> ({hr.designation}) | Email: <strong>{hr.email}</strong> | Phone: <strong>{hr.phone}</strong> | Openings: <strong>{hr.openings}</strong>
+                      </div>
+                    </div>
+                    <span style={{ fontSize: '12px', color: 'var(--grey)' }}>
+                      {new Date(hr.submittedAt).toLocaleDateString()}
+                    </span>
+                  </div>
+                  {hr.message && (
+                    <p style={{ fontSize: '14px', lineHeight: '1.6', color: 'var(--charcoal)', whiteSpace: 'pre-wrap', margin: 0 }}>
+                      {hr.message}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </Reveal>
+
+        {/* Contact Form Messages Section */}
         <Reveal className="admin-section">
-          <h2 className="admin-section-title">Support Messages & Inquiries</h2>
+          <h2 className="admin-section-title">📩 Support Messages & Inquiries</h2>
           <p style={{ color: 'var(--grey)', fontSize: '13.5px', marginBottom: '24px' }}>
             Direct inbox messages received from the Contact Support form.
           </p>
 
-          {ticketsList.length === 0 ? (
+          {ticketsList.length === 0 && contactSubmissions.length === 0 ? (
             <p style={{ fontStyle: 'italic', color: 'var(--grey)' }}>No support messages found.</p>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              {ticketsList.map(t => (
+              {contactSubmissions.map((c) => (
+                <div key={c.id} style={{ background: 'var(--cream)', border: '1.5px solid var(--border-soft)', padding: '24px', borderRadius: '12px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '14px', borderBottom: '1px solid rgba(0,0,0,0.05)', paddingBottom: '10px' }}>
+                    <div>
+                      <strong style={{ fontSize: '15px', color: 'var(--black)' }}>{c.subject}</strong>
+                      <div style={{ fontSize: '12.5px', color: 'var(--grey)', marginTop: '2px' }}>
+                        From: <strong>{c.name}</strong> ({c.email})
+                      </div>
+                    </div>
+                    <span style={{ fontSize: '12px', color: 'var(--grey)' }}>
+                      {new Date(c.submittedAt).toLocaleDateString()} at {new Date(c.submittedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </span>
+                  </div>
+                  <p style={{ fontSize: '14px', lineHeight: '1.6', color: 'var(--charcoal)', whiteSpace: 'pre-wrap' }}>
+                    {c.message}
+                  </p>
+                </div>
+              ))}
+              {ticketsList.map((t) => (
                 <div key={t.id} style={{ background: 'var(--cream)', border: '1.5px solid var(--border-soft)', padding: '24px', borderRadius: '12px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '14px', borderBottom: '1px solid rgba(0,0,0,0.05)', paddingBottom: '10px' }}>
                     <div>

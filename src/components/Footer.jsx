@@ -18,9 +18,20 @@ export default function Footer() {
           <h4>Platform</h4>
           <ul>
             <li><Link to="/programs">Programs</Link></li>
-            <li><Link to="/for-startups">For Startups</Link></li>
-            <li><Link to="/resources">Resources Hub</Link></li>
+            <li><Link to="/for-hr">For HR's</Link></li>
+            <li><Link to="/resources">Explore ACHL</Link></li>
             <li><Link to="/about">About Us</Link></li>
+          </ul>
+        </div>
+
+        <div className="footer__col">
+          <h4>Connect & Address</h4>
+          <ul className="footer__contact-list">
+            <li><a href="https://www.instagram.com/achl.think" target="_blank" rel="noopener noreferrer">Instagram (@achl.think)</a></li>
+            <li><a href="https://www.linkedin.com/in/achl-think-3237a13b5/" target="_blank" rel="noopener noreferrer">LinkedIn (ACHL)</a></li>
+            <li style={{ color: 'var(--grey)', fontSize: '13px', lineHeight: '1.4', marginTop: '6px' }}>
+              📍 Prahladnagar, Ahmedabad, Gujarat, 380015
+            </li>
           </ul>
         </div>
 
