@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { apiRequest } from '../utils/api';
 import './CoursePlayer.css';
+import flvjs from 'flv.js';
 
 export default function CoursePlayer() {
   const { courseSlug } = useParams();
@@ -10,12 +11,17 @@ export default function CoursePlayer() {
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  
+
   const [activeModuleIdx, setActiveModuleIdx] = useState(0);
   const [activeLessonIdx, setActiveLessonIdx] = useState(0);
   const [completedLessons, setCompletedLessons] = useState([]);
   const [noteText, setNoteText] = useState('');
   const [savingNote, setSavingNote] = useState(false);
+
+  // FLV Stream state
+  const [isStreamLive, setIsStreamLive] = useState(false);
+  const videoRef = useRef(null);
+  const flvPlayerRef = useRef(null);
 
   // Use refs to check if note needs saving on unmount/switch
   const currentNoteText = useRef('');
@@ -33,7 +39,7 @@ export default function CoursePlayer() {
 
     setLoading(true);
     setError('');
-    
+
     apiRequest(`/courses/${courseSlug}`)
       .then(data => {
         setCourse(data);
@@ -57,6 +63,58 @@ export default function CoursePlayer() {
         console.error('Failed to load completed lessons:', err);
       });
   }, [courseSlug]);
+
+  // Check RTMP stream status
+  useEffect(() => {
+    let checkInterval;
+    const streamKey = courseSlug;
+    const apiUrl = import.meta.env.VITE_RTMP_API_URL || 'http://localhost:3000';
+
+    const checkStreamStatus = async () => {
+      try {
+        const res = await fetch(`${apiUrl}/api/stream-status/${streamKey}`);
+        const data = await res.json();
+        setIsStreamLive(data.isLive);
+      } catch (err) {
+        setIsStreamLive(false);
+      }
+    };
+
+    checkStreamStatus();
+    checkInterval = setInterval(checkStreamStatus, 5000);
+    return () => clearInterval(checkInterval);
+  }, [courseSlug]);
+
+  // Initialize FLV Player when live
+  useEffect(() => {
+    if (isStreamLive && videoRef.current && flvjs.isSupported()) {
+      const flvUrl = import.meta.env.VITE_RTMP_HTTP_URL || 'http://localhost:8000';
+      const streamKey = courseSlug;
+
+      const flvPlayer = flvjs.createPlayer({
+        type: 'flv',
+        isLive: true,
+        hasAudio: true,
+        hasVideo: true,
+        url: `${flvUrl}/live/${streamKey}.flv`
+      }, {
+        enableWorker: true,
+        enableStashBuffer: false,
+        stashInitialSize: 128
+      });
+      flvPlayer.attachMediaElement(videoRef.current);
+      flvPlayer.load();
+
+      // Auto-play the live stream (browsers may require muted to auto-play, or user interaction)
+      flvPlayer.play().catch(err => console.log('Autoplay prevented, user interaction required.', err));
+      flvPlayerRef.current = flvPlayer;
+
+      return () => {
+        flvPlayer.destroy();
+        flvPlayerRef.current = null;
+      };
+    }
+  }, [isStreamLive, courseSlug]);
 
   // Load note text when active lesson changes (first save previous)
   useEffect(() => {
@@ -187,7 +245,7 @@ export default function CoursePlayer() {
       {/* Curriculum Sidebar */}
       <div className="player-sidebar">
         <h2 className="player-sidebar__title">Course Syllabus</h2>
-        
+
         {curriculum.length === 0 ? (
           <p style={{ color: 'var(--grey)', fontSize: '13.5px' }}>No modules added yet.</p>
         ) : (
@@ -199,7 +257,7 @@ export default function CoursePlayer() {
                   const key = `${courseSlug}_m${mIdx}_l${lIdx}`;
                   const completed = completedLessons.includes(key);
                   const active = activeModuleIdx === mIdx && activeLessonIdx === lIdx;
-                  
+
                   return (
                     <button
                       key={lIdx}
@@ -232,33 +290,43 @@ export default function CoursePlayer() {
         </div>
 
         {/* Video Screen Placeholder */}
-        <div className="player-video-box">
-          <div style={{ textAlign: 'center' }}>
-            <span style={{ fontSize: '14px', letterSpacing: '0.15em', display: 'block', color: '#F9F8F6', opacity: 0.6, marginBottom: '8px' }}>
-              VIDEO SEMINAR FEEDS
-            </span>
-            <span style={{ fontSize: '20px', color: 'var(--white)', fontWeight: 600 }}>{activeLesson || 'No lessons loaded'}</span>
-          </div>
-          {/* Glowing Play Icon */}
-          <div style={{
-            position: 'absolute',
-            width: '64px',
-            height: '64px',
-            borderRadius: '50%',
-            background: 'var(--red)',
-            color: 'var(--white)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '24px',
-            cursor: 'pointer',
-            boxShadow: '0 0 20px rgba(197, 0, 24, 0.4)',
-            bottom: '24px',
-            right: '24px',
-            fontWeight: 800
-          }}>
-            ▶
-          </div>
+        <div className="player-video-box" style={{ position: 'relative' }}>
+          {isStreamLive ? (
+            <video
+              ref={videoRef}
+              controls
+              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
+          ) : (
+            <>
+              <div style={{ textAlign: 'center' }}>
+                <span style={{ fontSize: '14px', letterSpacing: '0.15em', display: 'block', color: '#F9F8F6', opacity: 0.6, marginBottom: '8px' }}>
+                  VIDEO SEMINAR FEEDS (OFFLINE)
+                </span>
+                <span style={{ fontSize: '20px', color: 'var(--white)', fontWeight: 600 }}>{activeLesson || 'No lessons loaded'}</span>
+              </div>
+              {/* Glowing Play Icon */}
+              <div style={{
+                position: 'absolute',
+                width: '64px',
+                height: '64px',
+                borderRadius: '50%',
+                background: 'var(--red)',
+                color: 'var(--white)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '24px',
+                cursor: 'pointer',
+                boxShadow: '0 0 20px rgba(197, 0, 24, 0.4)',
+                bottom: '24px',
+                right: '24px',
+                fontWeight: 800
+              }}>
+                ▶
+              </div>
+            </>
+          )}
         </div>
 
         {/* Lesson Description */}
